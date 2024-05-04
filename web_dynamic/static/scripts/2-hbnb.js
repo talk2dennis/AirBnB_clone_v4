@@ -21,7 +21,6 @@ $(document).ready(function () {
     $.get(url, function (response) {
         if (response.status === "OK") {
             $("#api_status").addClass("available");
-            console.log(response);
         } else {
             $("#api_status").removeClass("available");
         }
