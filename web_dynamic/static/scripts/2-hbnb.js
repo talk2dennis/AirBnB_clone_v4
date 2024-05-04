@@ -8,17 +8,22 @@ $(document).ready(function () {
         } else {
             delete selected[$(this).attr('data-id')];
         }
-        $('.amenities h4').text(Object.values(selected).join(', '));
+        if (Object.keys(selected).length === 0) {
+            $('div.amenities h4').html('&nbsp');
+          } else {
+            $('.amenities h4').text(Object.values(selected).join(', '));
+          }
     });
 
     // Fetch the status of the API
-    let url = "http://0.0.0.0:5001/api/v1/status/"
+    let url = "http://localhost:5001/api/v1/status/"
 
-    $.get(url, function (response, status) {
-        console.log(response)
-        console.log(status)
-        if (status === "success") {
-            console.log(response)
+    $.get(url, function (response) {
+        if (response.status === "OK") {
+            $("#api_status").addClass("available");
+            console.log(response);
+        } else {
+            $("#api_status").removeClass("available");
         }
     })
 });
