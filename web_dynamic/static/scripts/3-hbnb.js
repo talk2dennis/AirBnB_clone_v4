@@ -26,22 +26,38 @@ $(document).ready(function () {
         }
     });
 
-    $.ajax({
-        type: 'POST',
-        contentType: 'application/json',
-        dataType: 'json',
-        url: 'http://0.0.0.0:5001/api/v1/places_search/',
-        data: '{}',
-        success: function (data) {
-          places = data;
-          renderPlaces();
-        }
-      });
+    $.ajaxSetup({
+        contentType: 'application/json'
+    });
+    $.post('http://localhost:5001/api/v1/places_search/', '{}', function (data) {
+        renderPlaces(data);
+    })
+    .fail(function(xhr, status, error) {
+        console.error('Error:', error);
+    });
+
+    // $.ajax({
+    //     type: 'POST',
+    //     contentType: 'application/json',
+    //     dataType: 'json',
+    //     url: 'http://0.0.0.0:5001/api/v1/places_search/',
+    //     data: '{}',
+    //     success: function (data) {
+    //       places = data;
+    //       renderPlaces();
+    //     }
+    //   });
     
 });
 
-  function renderPlaces () {
-    $placesContainer.empty();
+function renderPlaces (places) {
+    //$placesContainer.empty();
+    let placesContainer = $('div .places');
+     // Check if the container exists in the DOM
+     if (placesContainer.length === 0) {
+        console.error("Places container not found in the DOM");
+        return;
+    }
     places.forEach(place => {
       const html = `
                 <article>
@@ -68,7 +84,7 @@ $(document).ready(function () {
                     <div class="description">${place.description}</div>
                 </article>
             `;
-      $placesContainer.append(html);
+      placesContainer.append(html);
     });
   }
 
