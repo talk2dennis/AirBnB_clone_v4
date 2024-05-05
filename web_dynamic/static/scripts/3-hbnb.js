@@ -30,7 +30,7 @@ $(document).ready(function () {
         type: 'POST',
         contentType: 'application/json',
         dataType: 'json',
-        url: 'http://0.0.0.0:5001/api/v1/places_search',
+        url: 'http://0.0.0.0:5001/api/v1/places_search/',
         data: '{}',
         success: function (data) {
           places = data;
