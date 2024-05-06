@@ -35,18 +35,12 @@ $(document).ready(function () {
     .fail(function(xhr, status, error) {
         console.error('Error:', error);
     });
-
-    // $.ajax({
-    //     type: 'POST',
-    //     contentType: 'application/json',
-    //     dataType: 'json',
-    //     url: 'http://0.0.0.0:5001/api/v1/places_search/',
-    //     data: '{}',
-    //     success: function (data) {
-    //       places = data;
-    //       renderPlaces();
-    //     }
-    //   });
+    // for task 5: to filter search using amenities
+    $('button[type="button"]').click(function(){
+        console.log("search button clicked");
+        alert("button clicked");
+    });
+    
     
 });
 
