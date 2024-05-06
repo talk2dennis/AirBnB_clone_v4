@@ -35,10 +35,21 @@ $(document).ready(function () {
     .fail(function(xhr, status, error) {
         console.error('Error:', error);
     });
+
     // for task 5: to filter search using amenities
     $('button[type="button"]').click(function(){
-        console.log("search button clicked");
-        alert("button clicked");
+        // get the selected amenities to a list
+        var amenitiesList = Object.keys(selected);
+        var data = JSON.stringify({ "amenities": amenitiesList });
+        $.ajaxSetup({
+            contentType: 'application/json'
+        });
+        $.post('http://localhost:5001/api/v1/places_search/', data, function (data) {
+            renderPlaces(data);
+        })
+        .fail(function(xhr, status, error) {
+            console.error('Error:', error);
+        });
     });
     
     
@@ -51,6 +62,9 @@ function renderPlaces (places) {
      if (placesContainer.length === 0) {
         console.error("Places container not found in the DOM");
         return;
+    }
+    if (places.length >= 0) {
+        placesContainer.empty()
     }
     places.forEach(place => {
       const html = `
@@ -78,7 +92,7 @@ function renderPlaces (places) {
                     <div class="description">${place.description}</div>
                 </article>
             `;
-      placesContainer.append(html);
+        placesContainer.append(html);
     });
   }
 
