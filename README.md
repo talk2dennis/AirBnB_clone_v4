@@ -154,7 +154,7 @@ EOF  all  create  destroy  help  quit  show  update
 No known bugs at this time. 
 
 ## Authors
-Dennis Adigwe - [Github](https://github.com/talk2dennis) / [Twitter](https://twitter.com/alexa_orrico)  
+Dennis Adigwe - [Github](https://github.com/talk2dennis) / [Twitter](https://twitter.com/adigwe_dennis)  
 Bilal Oyeleke Soliu - [Github](https://github.com/Sobilo34) / [Twitter](https://twitter.com/sobil56)  
 
 Second part of Airbnb: Joann Vuong
